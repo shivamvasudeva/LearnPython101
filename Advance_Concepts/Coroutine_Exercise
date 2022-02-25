@@ -1,0 +1,20 @@
+
+
+def searcher():
+    f = open("test.txt", "r")
+    lines = f.readlines()
+    lines = map(lambda lines: lines.strip(), lines)
+    
+
+    while True:
+        text = (yield)
+
+        if text in lines:
+            print(f"{text} is in the file named test.txt")
+        else:
+            print (f"{text} is not the file named test.txt")
+
+findit = searcher()
+word = input("Enter the word: ")
+next(findit)
+findit.send(word)
